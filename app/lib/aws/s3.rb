@@ -10,7 +10,7 @@ module AWS
       end
 
       def objects
-        Aws::S3::Bucket.new(bucket[:name], client: client).objects.each { |o| }
+        Aws::S3::Bucket.new(bucket[:name], client: client).objects.map { |o| o }
       end
 
       def object(key)
