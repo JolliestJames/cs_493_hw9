@@ -9,13 +9,21 @@ module AWS
         })
       end
 
+      def objects
+        Aws::S3::Bucket.new(bucket[:name], client: client).objects.each { |o| }
+      end
+
+      def object(key)
+        Aws::S3::Bucket.new(bucket[:name], client: client).object(key)
+      end
+      
+      private
+
       def bucket
         buckets[:buckets].detect do |b|
           b[:name] == Rails.application.secrets.aws[:bucket_name]
         end
       end
-
-      private
 
       def buckets
         client.list_buckets
