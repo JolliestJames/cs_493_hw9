@@ -14,7 +14,7 @@ module AwsService
       end
 
       def object(key)
-        client.get_object(bucket: bucket[:name], key: key).body.read
+        client.get_object(bucket: bucket[:name], key: key)
       end
 
       private
