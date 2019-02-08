@@ -17,6 +17,6 @@ RSpec.describe AwsService::S3 do
   describe '.object' do
     let(:key) { 'Gemfile' }
 
-    specify { expect(described_class.object(key)).to be_a(String) }
+    specify { expect(described_class.object(key)).to be_a(Seahorse::Client::Response) }
   end
 end
