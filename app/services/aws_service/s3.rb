@@ -14,9 +14,9 @@ module AwsService
       end
 
       def object(key)
-        Aws::S3::Bucket.new(bucket[:name], client: client).object(key)
+        client.get_object(bucket: bucket[:name], key: key).body.read
       end
-      
+
       private
 
       def bucket
