@@ -28,3 +28,6 @@
 
 # Ignore .env
 .env
+
+# Ignore test .mp3
+song.mp3
