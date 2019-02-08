@@ -1,4 +1,4 @@
-module AWS
+module AwsService
   class S3
     class << self
       def put_object(object, path)
@@ -31,7 +31,7 @@ module AWS
 
       def client
         Aws::S3::Client.new(
-          credentials: AWS::Credentials.simple_storage_service,
+          credentials: AwsService::Credentials.simple_storage_service,
           region: Rails.application.secrets.aws[:region]
         )
       end

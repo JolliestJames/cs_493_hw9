@@ -1,4 +1,4 @@
-module AWS
+module AwsService
   class Credentials
     class << self
       def simple_storage_service
