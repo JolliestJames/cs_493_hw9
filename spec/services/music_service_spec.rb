@@ -10,7 +10,7 @@ RSpec.describe MusicService do
 
   describe '.encode_songs' do
     let(:expected) do
-      [Base64.encode64(File.open('spec/fixtures/test.txt').read)]
+      { 'spec/fixtures/test.txt': Base64.encode64(File.open('spec/fixtures/test.txt').read) }
     end
 
     specify do
@@ -19,7 +19,7 @@ RSpec.describe MusicService do
   end
 
   describe '.songs' do
-    let(:expected) { ["some song\n"] }
+    let(:expected) { [ { "spec/fixtures/test.txt": "some song\n" } ] }
 
     specify do
       expect(described_class.songs).to eq(expected)
