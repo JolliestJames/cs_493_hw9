@@ -7,12 +7,18 @@ class MusicService
     end
 
     def encode_songs
-      songs.map { |s| encode_song s }
+      encoded = {}
+      songs.each do |song|
+        song.each do |k, v|
+          encoded = encoded.merge("#{k}": encode_song(v))
+        end
+      end
+      encoded
     end
 
     def songs
       song_keys.map do |k|
-        AwsService::S3.object(k).body.read       
+        { "#{k.to_s}": AwsService::S3.object(k).body.read }
       end
     end
 
