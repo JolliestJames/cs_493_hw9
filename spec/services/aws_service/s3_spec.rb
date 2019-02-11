@@ -6,7 +6,7 @@ RSpec.describe AwsService::S3 do
   end
 
   describe '.put_object' do
-    let(:object) { 'song.mp3' }
+    let(:object) { 'spec/fixtures/song.mp3' }
     let(:path) { 'artic_monkeys/am/do_i_wanna_know?' }
 
     it 'returns a Seahorse::Client::Response' do
