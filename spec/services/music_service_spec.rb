@@ -10,14 +10,23 @@ RSpec.describe MusicService do
 
   describe '.encode_songs' do
     let(:expected) do
-      { 'spec/fixtures/test.txt': Base64.encode64(File.open('spec/fixtures/test.txt').read) }
+      { 'song': Base64.encode64('file') }
+    end
+
+    before do
+      allow(described_class).to receive(:songs).and_return([{song: 'file'}])
     end
 
     specify { expect(described_class.encode_songs).to eq expected }
   end
 
   describe '.songs' do
-    let(:expected) { [ { "spec/fixtures/test.txt": "some song\n" } ] }
+    let(:expected) { [ { 'artic_monkeys/am/do_i_wanna_know?': 'song contents' } ] }
+
+    before do
+      allow(described_class).to receive(:song_keys).and_return(['artic_monkeys/am/do_i_wanna_know?'])
+      allow(AwsService::S3).to receive(:read).and_return('song contents')
+    end
 
     specify { expect(described_class.songs).to eq(expected) }
   end
