@@ -25,6 +25,10 @@ module AwsService
         $s3_client.get_object(bucket: bucket[:name], key: key)
       end
 
+      def read(key)
+        object(key).body.read
+      end
+
       def object_url(key)
         Aws::S3::Object.new(bucket[:name], client: $s3_client, key: key).public_url
       end
