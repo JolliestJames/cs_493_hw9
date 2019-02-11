@@ -18,7 +18,7 @@ class MusicService
 
     def songs
       song_keys.map do |k|
-        { "#{k.to_s}": AwsService::S3.object(k).body.read }
+        { "#{k.to_s}": AwsService::S3.read(k) }
       end
     end
 
