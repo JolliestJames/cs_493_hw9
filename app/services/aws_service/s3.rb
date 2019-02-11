@@ -12,7 +12,8 @@ module AwsService
         $s3_client.put_object({
           body: File.read(object),
           bucket: bucket[:name],
-          key: path
+          key: path,
+          acl: 'public-read'
         })
       end
 
