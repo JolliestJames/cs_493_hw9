@@ -22,10 +22,36 @@ class MusicService
       end
     end
 
+    def music
+      collection = {}
+      song_keys.map do |k|
+        collection = collection.deep_merge(jsonify(k, song_url(k)))
+      end
+      collection
+    end
+
     private
 
+    attr_reader :song_keys
+
+    def jsonify(key, url)
+      artist, album, song = key.split('/')
+
+      {
+        "#{artist}": {
+          "#{album}": {
+            "#{song}": url
+          }
+        }
+      }
+    end
+
+    def song_url(key)
+      AwsService::S3.object_url(key)
+    end
+
     def song_keys
-      AwsService::S3.objects.map { |s| s.key }
+      @song_keys ||= AwsService::S3.objects.map { |s| s.key }
     end
   end
 end
