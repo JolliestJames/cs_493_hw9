@@ -1,6 +1,13 @@
 module AwsService
   class S3
     class << self
+      def client
+        Aws::S3::Client.new(
+          credentials: AwsService::Credentials.simple_storage_service,
+          region: Rails.application.secrets.aws[:region]
+        )
+      end
+
       def put_object(object, path)
         $s3_client.put_object({
           body: File.read(object),
@@ -17,11 +24,8 @@ module AwsService
         $s3_client.get_object(bucket: bucket[:name], key: key)
       end
 
-      def client
-        Aws::S3::Client.new(
-          credentials: AwsService::Credentials.simple_storage_service,
-          region: Rails.application.secrets.aws[:region]
-        )
+      def object_url(key)
+        Aws::S3::Object.new(bucket[:name], client: $s3_client, key: key).public_url
       end
 
       private
