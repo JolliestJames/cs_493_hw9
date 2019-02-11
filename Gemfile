@@ -7,6 +7,7 @@ gem 'rails', '~> 5.2.2'
 gem 'pg'
 gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'rack-cors', require: 'rack/cors'
 
 require 'aws-sdk-s3'
 require 'aws-sdk-core'
