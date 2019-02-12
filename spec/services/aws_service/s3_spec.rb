@@ -9,6 +9,12 @@ RSpec.describe AwsService::S3 do
     let(:object) { 'spec/fixtures/song.mp3' }
     let(:path) { 'artic_monkeys/am/do_i_wanna_know?' }
 
+    before do
+      expect_any_instance_of(Aws::S3::Client)
+        .to receive(:put_object)
+        .and_return(Seahorse::Client::Response.new)
+    end
+
     it 'returns a Seahorse::Client::Response' do
       expect(described_class.put_object(object, path)).to be_a(Seahorse::Client::Response)
     end
