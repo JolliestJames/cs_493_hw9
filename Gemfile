@@ -8,9 +8,10 @@ gem 'pg'
 gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rack-cors', require: 'rack/cors'
+gem 'unicorn'
 
-require 'aws-sdk-s3'
-require 'aws-sdk-core'
+gem 'aws-sdk-s3'
+gem 'aws-sdk-core'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
