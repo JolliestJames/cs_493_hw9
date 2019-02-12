@@ -23,3 +23,5 @@ production:
   pool: 5
   username: <%= ENV['TEST_DB_USERNAME'] %>
   password: <%= ENV['TEST_DB_PASSWORD'] %>
+  host: localhost
+  port: 5433
