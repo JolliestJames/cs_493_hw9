@@ -16,3 +16,10 @@ test:
   pool: 5
   username: <%= ENV['TEST_DB_USERNAME'] %>
   password: <%= ENV['TEST_DB_PASSWORD'] %>
+
+production:
+  <<: *default
+  database: cs_493_hw9_prod
+  pool: 5
+  username: <%= ENV['TEST_DB_USERNAME'] %>
+  password: <%= ENV['TEST_DB_PASSWORD'] %>
