@@ -31,3 +31,6 @@
 
 # Ignore user script
 deploy.sh
+
+# Ignore produ secrets
+config/secrets.prod.yml
