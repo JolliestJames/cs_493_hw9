@@ -11,6 +11,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'unicorn'
 
 gem 'aws-sdk-s3'
+gem 'aws-sdk-dynamodb'
 gem 'aws-sdk-core'
 
 group :development, :test do

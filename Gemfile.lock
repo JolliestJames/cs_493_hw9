@@ -50,6 +50,9 @@ GEM
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
+    aws-sdk-dynamodb (1.21.0)
+      aws-sdk-core (~> 3, >= 3.39.0)
+      aws-sigv4 (~> 1.0)
     aws-sdk-kms (1.13.0)
       aws-sdk-core (~> 3, >= 3.39.0)
       aws-sigv4 (~> 1.0)
@@ -180,6 +183,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-core
+  aws-sdk-dynamodb
   aws-sdk-s3
   bootsnap (>= 1.1.0)
   byebug
