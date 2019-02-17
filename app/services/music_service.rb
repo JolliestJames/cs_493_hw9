@@ -1,37 +1,7 @@
 require 'base64'
 
-class MusicService
+module MusicService
   class << self
-    def encode_song(song)
-      Base64.encode64(song)
-    end
-
-    def encode_songs
-      encoded = {}
-      songs.each do |song|
-        song.each do |k, v|
-          encoded = encoded.merge("#{k}": encode_song(v))
-        end
-      end
-      encoded
-    end
-
-    def songs
-      song_keys.map do |k|
-        { "#{k.to_s}": AwsService::S3.read(k) }
-      end
-    end
-
-    def music
-      collection = {}
-      song_keys.map do |k|
-        collection = collection.deep_merge(jsonify(k, song_url(k)))
-      end
-      collection
-    end
-
-    private
-
     attr_reader :song_keys
 
     def jsonify(key, url)
