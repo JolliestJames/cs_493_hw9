@@ -5,7 +5,7 @@ RSpec.describe Api::V1::MusicController, type: :controller do
     let(:expected) { { music: { 'artist': {'album': {'song': 'url' } } } } }
 
     before do
-      allow(MusicService).to receive(:music).and_return(expected[:music])
+      allow(MusicService::V1).to receive(:music).and_return(expected[:music])
     end
 
     specify { expect(get(:index).body).to eq(expected.to_json) }
