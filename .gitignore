@@ -34,3 +34,6 @@ deploy.sh
 
 # Ignore produ secrets
 config/secrets.prod.yml
+
+# Ignore dynamo db template
+dynamo_db_template
