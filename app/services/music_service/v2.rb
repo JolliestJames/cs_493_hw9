@@ -6,19 +6,20 @@ module MusicService
       end
 
       def genre(key)
+        byebug
         AwsService::DynamoDB.query(genre: key).each.map { |item| item['artist'] }.to_set.to_a
       end
 
       def artist(key)
         genres.map do |g|
           AwsService::DynamoDB.query(genre: g, artist: key, method: :artist)
-        end.first.each.map { |item| item['album'] }.to_set.to_a
+        end.map { |r| r.each.map { |item| item['album'] }.to_set.to_a }.flatten
       end
 
       def album(key)
         genres.map do |g|
           AwsService::DynamoDB.query(genre: g, album: key, method: :album)
-        end.first.each.map { |item| item['song'] }.to_set.to_a
+        end.map { |r| r.each.map { |item| item['song'] }.to_set.to_a }.flatten
       end
 
       def song(key)
