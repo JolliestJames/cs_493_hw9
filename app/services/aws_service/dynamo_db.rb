@@ -13,19 +13,22 @@ module AwsService
       end
 
       def query(opts)
-        query_options = {
+        query_options = build_query(opts)
+        query_options = apply_filter(query_options, opts[:method]) if opts[:method]
+        byebug
+        client.query(query_options).items
+      end
+
+      def build_query(opts)
+        {
           expression_attribute_values: expression_attribute_values(opts), 
           key_condition_expression: "genre = :genre",
           table_name: Rails.application.secrets.aws[:dynamo_db_table]
         }
-
-        query_options = query_options.merge(filter(opts[:method])) if opts[:method]
-
-        client.query(query_options).items
       end
 
-      def filter(method)
-        { filter_expression: "#{method} = :#{method}" }
+      def apply_filter(query_options, method)
+        query_options.merge(filter_expression: "#{method} = :#{method}")
       end
 
       def expression_attribute_values(opts)
