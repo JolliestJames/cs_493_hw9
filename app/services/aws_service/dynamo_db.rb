@@ -15,7 +15,6 @@ module AwsService
       def query(opts)
         query_options = build_query(opts)
         query_options = apply_filter(query_options, opts[:method]) if opts[:method]
-        byebug
         client.query(query_options).items
       end
 
