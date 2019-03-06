@@ -40,7 +40,6 @@ RSpec.describe MusicService::V2 do
       allow(AwsService::DynamoDB).to receive(:scan).and_return(['genre'])
       allow(AwsService::DynamoDB)
         .to receive(:query)
-        .with(genre: 'genre')
         .and_return(result)
     end
 
