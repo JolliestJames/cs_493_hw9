@@ -5,10 +5,18 @@ module AwsService
         @client ||= Aws::DynamoDB::Client.new(region: Rails.application.secrets.aws[:region])
       end
 
-      def scan(attr)
+      def put(opts)
+        client.put_item(
+          item: opts[:item],
+          return_consumed_capacity: 'TOTAL',
+          table_name: opts[:table]
+        )
+      end
+
+      def scan(opts)
         client.scan(
-          attributes_to_get: [attr],
-          table_name: Rails.application.secrets.aws[:dynamo_db_table]
+          attributes_to_get: [opts[:attr]],
+          table_name: opts[:table]
         ).items
       end
 
@@ -22,7 +30,7 @@ module AwsService
         {
           expression_attribute_values: expression_attribute_values(opts), 
           key_condition_expression: "genre = :genre",
-          table_name: Rails.application.secrets.aws[:dynamo_db_table]
+          table_name: opts[:table]
         }
       end
 
