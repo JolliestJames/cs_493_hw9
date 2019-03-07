@@ -45,7 +45,7 @@ module MusicService
             method: :song,
             table: Rails.application.secrets.aws[:dynamo_db][:music]
           )
-        end.first.first['s3_location']
+        end.flatten.first['s3_location']
       end
     end
   end
