@@ -32,7 +32,7 @@
 # Ignore user script
 deploy.sh
 
-# Ignore produ secrets
+# Ignore production secrets
 config/secrets.prod.yml
 
 # Ignore dynamo db template
