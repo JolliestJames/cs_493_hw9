@@ -28,7 +28,7 @@ module Api
       private
 
       def play_params
-        params.permit(:artist, :album, :song)
+        params.require(:music).permit(:artist, :album, :song)
       end
     end
   end

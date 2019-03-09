@@ -50,7 +50,7 @@ module MusicService
 
       def play(opts)
         catch :error do
-          throw :error, 'Failed to publish' unless AwsService::SQS.send(opts.to_json.to_s).message_id
+          throw :error, 'Failed to publish' unless AwsService::SQS.send(opts.to_json).message_id
           :ok
         end
       end
