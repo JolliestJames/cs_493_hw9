@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'songs/for/album', action: :songs, controller: 'api/v2/music'
   get 'song', action: :song, controller: 'api/v2/music'
   post 'save-user', action: :save_user, controller: 'api/v2/users'
+  post 'play', action: :play, controller: 'api/v2/music'
 
   namespace :api do
     namespace :v1 do
