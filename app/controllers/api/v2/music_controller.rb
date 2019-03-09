@@ -20,6 +20,16 @@ module Api
       def song
         render json: { url: MusicService::V2.song(params[:song]) }, status: :ok
       end
+
+      def play
+        render json: { result: MusicService::V2.play(play_params) }, status: :accepted
+      end
+
+      private
+
+      def play_params
+        params.permit(:artist, :album, :song)
+      end
     end
   end
 end
