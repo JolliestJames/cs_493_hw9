@@ -84,7 +84,7 @@ RSpec.describe Api::V2::MusicController, type: :controller do
     end
 
     it 'returns http :accepted' do
-      post :play, params: { music: { artist: 'artist', album: 'album', song: 'song' } }
+      post :play, params: { artist: 'artist', album: 'album', song: 'song' }
 
       expect(response.body).to eq(expected.to_json)
     end
