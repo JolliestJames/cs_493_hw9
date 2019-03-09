@@ -12,6 +12,7 @@ gem 'unicorn'
 
 gem 'aws-sdk-s3'
 gem 'aws-sdk-dynamodb'
+gem 'aws-sdk-sqs'
 gem 'aws-sdk-core'
 
 group :development, :test do
