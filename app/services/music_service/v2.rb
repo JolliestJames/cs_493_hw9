@@ -47,6 +47,13 @@ module MusicService
           )
         end.flatten.first['s3_location']
       end
+
+      def play(opts)
+        catch :error do
+          throw :error, 'Failed to publish' unless AwsService::SQS.send(opts.to_json.to_s).message_id
+          :ok
+        end
+      end
     end
   end
 end
