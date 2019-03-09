@@ -75,4 +75,18 @@ RSpec.describe Api::V2::MusicController, type: :controller do
 
     specify { expect(get(:song, params: { song: 'song' })).to be_successful }
   end
+
+  describe 'POST #play' do
+    let(:expected) { { result: :ok } }
+
+    before do
+      allow(MusicService::V2).to receive(:play).and_return(:ok)
+    end
+
+    it 'returns http :accepted' do
+      post :play, params: { artist: 'artist', album: 'album', song: 'song' }
+
+      expect(response.body).to eq(expected.to_json)
+    end
+  end
 end
